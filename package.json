@@ -1,0 +1,23 @@
+{
+  "name": "react-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "dependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.17.0",
+    "babel-preset-react": "^6.16.0",
+    "babelify": "^7.3.0",
+    "browser": "^0.2.6",
+    "browserify": "^13.1.0",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+        "build":"browserify -t [babelify] main.js -o bundle.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "babel": {"presets": ["react"]}
+}
