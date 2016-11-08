@@ -45,3 +45,49 @@ module.exports = {
     ]
   }
 };
+
+/**
+* redux2-demo
+**/
+module.exports = {
+  entry: path.resolve(__dirname, 'redux-demo2/index.js'),
+  output: {
+    path: path.resolve(__dirname, 'redux-demo2/'),
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+    {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        presets: ['es2015','react']
+      }
+    },
+    ]
+  }
+};
+
+/**
+* redux3-demo
+**/
+module.exports = {
+  entry: path.resolve(__dirname, 'redux-demo3/index.js'),
+  output: {
+    path: path.resolve(__dirname, 'redux-demo3/'),
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+    {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        presets: ['es2015','react']
+      }
+    },
+    ]
+  }
+};
