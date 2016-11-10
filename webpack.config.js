@@ -91,3 +91,26 @@ module.exports = {
     ]
   }
 };
+
+/**
+* react-router
+**/
+module.exports = {
+  entry: path.resolve(__dirname, 'react-router/app.js'),
+  output: {
+    path: path.resolve(__dirname, 'react-router/'),
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+    {
+      test: /\.jsx?$/,
+      exclude: /node_modules/,
+      loader: 'babel',
+      query: {
+        presets: ['es2015','react']
+      }
+    },
+    ]
+  }
+};
