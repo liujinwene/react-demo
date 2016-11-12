@@ -4,8 +4,9 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start": "webpack-dev-server --progress --colors",
+    "compile": "webpack --progress --colors",
+    "production-compile": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress --colors"
   },
   "repository": {
     "type": "git",
@@ -27,8 +28,14 @@
   "devDependencies": {
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
+    "babel-plugin-react-transform": "^2.0.2",
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-react": "^6.16.0",
+    "css-loader": "^0.25.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "html-webpack-plugin": "^2.24.1",
+    "react-transform-hmr": "^1.0.4",
+    "style-loader": "^0.13.1",
     "webpack": "^1.13.3"
   }
 }
