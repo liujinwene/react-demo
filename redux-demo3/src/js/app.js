@@ -1,49 +1,62 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addText } from './actions';
-import rootReducer from './reducer';
+import { addText, listCat } from './actions';
 
 class App extends Component {
-
 	constructor(props) {
 		super(props);
-		this.handleClick = this.handleClick.bind(this);
+		
 		this.handleChange = this.handleChange.bind(this);
+		this.handleAddText = this.handleAddText.bind(this);
+		this.handleListCat = this.handleListCat.bind(this);
+
 		this.state = {value: ''};
 	}
 
-	handleClick() {
+	handleChange(e) {
+		this.setState({value: e.target.value});
+	}
+
+	handleAddText(e) {
 		this.props.dispatch(addText(this.state.value));
 	}
-	
-	handleChange(event) {
-		this.setState({
-			value: event.target.value
-		});
+
+	handleListCat() {
+		this.props.dispatch(listCat());
 	}
 
 	render() {
-		const { cats } = this.props;
-		console.log('cats=' + JSON.stringify(cats));
 		let textElements = null;
-		if(cats !== undefined && cats.length > 0) {
-			textElements = cats.map(cat => <p>cat</p>);
+		let catElements = null;
+		const { texts, cats } = this.props;
+		if(texts != undefined && texts.length > 0) {
+			textElements = texts.map(text => 
+				<li>{text}</li>
+				);
+		}
+
+		if(cats != undefined && cats.length > 0) {
+			catElements = cats.map(cat => 
+				<li>{cat.name}</li>
+				);
 		}
 
 		return (
 			<div>
-				{textElements}
-				<input type='text' value={this.state.value} onChange={this.handleChange}/>
-				<input type='button' value='submit' onClick={this.handleClick} />
+				<input type="text" onChange={this.handleChange} value={this.state.value} />
+				<input type="button" onClick={this.handleAddText} value="addText" />
+				<input type="button" onClick={this.handleListCat} value="listCat" />
+				<ul>{textElements}</ul>
+				<ul>{catElements}</ul>
 			</div>
 			)
-
 	}
 }
 
 function select(state) {
 	return {
-		 cats: state.cats
+		texts: state.texts,
+		cats: state.cats
 	}
 }
 
