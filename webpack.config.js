@@ -4,20 +4,20 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
-* redux-demo3
+* react-router2
 **/
 module.exports = {
-  entry: path.resolve(__dirname, 'redux-demo3/src/js/index.js'),
+  entry: path.resolve(__dirname, 'react-router2/src/js/index.js'),
 
   output: {
-    path: path.resolve(__dirname, 'redux-demo3/deploy'),
+    path: path.resolve(__dirname, 'react-router2/deploy'),
     filename: 'bundle.js'//js文件名加hash
   },
 
   devtool: 'eval-source-map',//方便调试,js代码，加eval源码
 
   devServer: {
-    contentBase: './redux-demo3',//本地服务器加载目录
+    contentBase: './react-router2',//本地服务器加载目录
     colors: true,//终端输出结果为彩色
     historyApiFallback: true,//不跳转
     inline: true,//实时刷新
@@ -44,7 +44,7 @@ module.exports = {
   plugins: [
     new webpack.BannerPlugin("Copyright abc inc."),//文件顶部加注释
     new HtmlWebpackPlugin({
-      template: __dirname + '/redux-demo3/src/html/index.tmpl.html'
+      template: __dirname + '/react-router2/src/html/index.tmpl.html'
     }),
     new webpack.HotModuleReplacementPlugin()//热加载插件
   ]
