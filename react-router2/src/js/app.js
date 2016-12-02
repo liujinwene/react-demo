@@ -1,5 +1,10 @@
-import React, { Component } from 'react';
-import { IndexLink,Link } from 'react-router';
+import React, {
+	Component
+} from 'react';
+import {
+	IndexLink,
+	Link
+} from 'react-router';
 
 export default class App extends Component {
 
@@ -12,7 +17,7 @@ export default class App extends Component {
 				<p>hi</p>
 				{this.props.children}
 			</div>
-			)
+		)
 
 	}
 }
