@@ -1,7 +1,9 @@
 import React, {
 	Component
 } from 'react';
-import request from 'superagent';
+import {
+	listCat
+} from './actions';
 
 export default class App extends Component {
 
@@ -9,6 +11,7 @@ export default class App extends Component {
 		super(props);
 
 		this.handleClick = this.handleClick.bind(this);
+		this.setCats = this.setCats.bind(this);
 
 		this.state = {
 			cats: []
@@ -16,30 +19,14 @@ export default class App extends Component {
 	}
 
 	handleClick() {
-		this.listCat(this);
+		listCat(this.setCats);
 	}
 
-	listCat(component) {
-		request.get('/bizservice/rest/front/commo/listCommoCatByCd')
-			.then((result) => {
-				if (!component.requestIsSuccess(result)) {
-					alert("request fail.result=" + JSON.stringify(result));
-				} else {
-					component.setState({
-						cats: result.body.response
-					});
-				}
-			})
+	setCats(cats) {
+		this.setState({
+			cats
+		});
 	}
-
-	requestIsSuccess(result) {
-		if (result === undefined || result.status !== 200 || result.body.status != 200) {
-			return false;
-		}
-		return true;
-	}
-
-
 
 	render() {
 		console.log('render-cats=' + JSON.stringify(this.state.cats));
