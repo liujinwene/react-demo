@@ -5,75 +5,66 @@ import {
 	listCat,
 	listCommoByCat
 } from './actions';
+import {
+	connect
+} from 'react-redux';
 
-export default class App extends Component {
+
+class App extends Component {
 
 	constructor(props) {
 		super(props);
 
-		this.setCats = this.setCats.bind(this);
-		this.setCommos = this.setCommos.bind(this);
-
 		this.listCat = this.listCat.bind(this);
-		this.listCommoByCat = this.selectCommos.bind(this);
-		this.listFirstCatCommo = this.listFirstCatCommo.bind(this);
-
-		this.state = {
-			cats: [],
-			commos: []
-		};
+		this.listCommoByCat = this.listCommosByCat.bind(this);
 	}
 
 	componentWillMount() {
 		this.listCat();
 	}
 
-	setCats(cats) {
-		this.setState({
-			cats
-		});
-	}
-
-	setCommos(commos) {
-		this.setState({
-			commos
-		});
-	}
-
 	listCat() {
-		listCat(this.listFirstCatCommo);
+		this.props.dispatch(listCat());
 	}
 
-	listFirstCatCommo(cats) {
-		this.setCats(cats);
-		if (cats != undefined && cats.length > 0) {
-			selectCommos(cats[0].id, this.setCommos);
-		}
-	}
-
-	selectCommos(e) {
+	listCommosByCat(e) {
 		console.log('catId=' + e.target.value);
-		listCommoByCat(e.target.value, this.setCommos);
+		this.props.dispatch(listCommoByCat(e.target.value));
 	}
 
 	render() {
-		console.log('render-cats=' + JSON.stringify(this.state.cats));
-		console.log('render-commos=' + JSON.stringify(this.state.commos));
+		const {
+			cats,
+			commos
+		} = this.props;
 
-		const cats = this.state.cats.map(cat => {
+		console.log('render-cats=' + JSON.stringify(cats));
+		console.log('render-commos=' + JSON.stringify(commos));
+
+		const catElements = cats.map(cat => {
 			return <li><input type="button" value={cat.id} onClick={this.listCommoByCat} /></li>
 		});
 
-		const commos = this.state.commos.map(commo => {
+		const commoElements = commos.map(commo => {
 			return <li>{commo.name}</li>
 		});
 
 		return (
 			<div>
 				<input type="button" onClick={this.listCat} />
-				<ul>{cats}</ul>
-				<ul>{commos}</ul>
+				<ul>{catElements}</ul>
+				<ul>{commoElements}</ul>
 			</div>
 		)
 	}
 }
+
+
+function select(state) {
+	return {
+		cats: state.cats,
+		commos: state.commos
+	}
+}
+
+export default connect(select)(App);
