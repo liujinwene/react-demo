@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import {
 	listCat,
-	selectCommos
+	listCommoByCat
 } from './actions';
 
 export default class App extends Component {
@@ -11,32 +11,21 @@ export default class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.listCat = this.listCat.bind(this);
-		this.selectCommos = this.selectCommos.bind(this);
 		this.setCats = this.setCats.bind(this);
 		this.setCommos = this.setCommos.bind(this);
-		this.selectFirstCatCommos = this.selectFirstCatCommos.bind(this);
+
+		this.listCat = this.listCat.bind(this);
+		this.listCommoByCat = this.selectCommos.bind(this);
+		this.listFirstCatCommo = this.listFirstCatCommo.bind(this);
 
 		this.state = {
 			cats: [],
 			commos: []
 		};
-
 	}
 
 	componentWillMount() {
 		this.listCat();
-	}
-
-	listCat() {
-		listCat(this.selectFirstCatCommos);
-	}
-
-	selectFirstCatCommos(cats) {
-		this.setCats(cats);
-		if (cats != undefined && cats.length > 0) {
-			selectCommos(cats[0].id, this.setCommos);
-		}
 	}
 
 	setCats(cats) {
@@ -51,9 +40,20 @@ export default class App extends Component {
 		});
 	}
 
+	listCat() {
+		listCat(this.listFirstCatCommo);
+	}
+
+	listFirstCatCommo(cats) {
+		this.setCats(cats);
+		if (cats != undefined && cats.length > 0) {
+			selectCommos(cats[0].id, this.setCommos);
+		}
+	}
+
 	selectCommos(e) {
 		console.log('catId=' + e.target.value);
-		selectCommos(e.target.value, this.setCommos);
+		listCommoByCat(e.target.value, this.setCommos);
 	}
 
 	render() {
@@ -61,7 +61,7 @@ export default class App extends Component {
 		console.log('render-commos=' + JSON.stringify(this.state.commos));
 
 		const cats = this.state.cats.map(cat => {
-			return <li><input type="button" value={cat.id} onClick={this.selectCommos} /></li>
+			return <li><input type="button" value={cat.id} onClick={this.listCommoByCat} /></li>
 		});
 
 		const commos = this.state.commos.map(commo => {

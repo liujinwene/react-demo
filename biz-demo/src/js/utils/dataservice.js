@@ -1,7 +1,7 @@
 import request from 'superagent';
 
 const listCatUrl = '/bizservice/rest/front/commo/listCommoCatByCd';
-const selectCommosUrl = '/bizservice/rest/front/commo/listByCat';
+const listCommoByCatUrl = '/bizservice/rest/front/commo/listByCat';
 
 
 function get(url, callback) {
@@ -50,8 +50,8 @@ function listCat(callback) {
 	post(listCatUrl, {}, callback);
 }
 
-function selectCommos(catId, callback) {
-	post(selectCommosUrl, {
+function listCommoByCat(catId, callback) {
+	post(listCommoByCatUrl, {
 		catId
 	}, callback);
 }
@@ -60,7 +60,7 @@ function selectCommos(catId, callback) {
 
 const DataService = {
 	listCat,
-	selectCommos
+	listCommoByCat
 };
 
 export default DataService;
