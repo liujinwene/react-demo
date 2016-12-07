@@ -1,22 +1,42 @@
 import request from 'superagent';
 
+const listCatUrl = '/bizservice/rest/front/commo/listCommoCatByCd';
+const selectCommosUrl = '/bizservice/rest/front/commo/listByCat';
+
 
 function get(url, callback) {
-	request.get(url).then(callback);
+	console.log('get-url' + url);
+	request.get(url)
+		.then((result) => doCallback(result, callback));
 }
 
 function post(url, params, callback) {
+	console.log('post-url' + url);
 
+	let formStr = '';
+	for (let i in params) {
+		if (params.hasOwnProperty(i)) {
+			formStr += i + '=' + params[i] + '&';
+		}
+	}
+	if (formStr != undefined && formStr != '') {
+		formStr = formStr.substring(0, formStr.length - 1);
+	}
+
+	console.log('formStr=' + formStr);
+
+	request.post(url)
+		.set('Content-Type', 'application/x-www-form-urlencoded')
+		.send(formStr)
+		.then((result) => doCallback(result, callback));
 }
 
-function listCat(callback) {
-	get('/bizservice/rest/front/commo/listCommoCatByCd', (result) => {
-		if (!requestIsSuccess(result)) {
-			alert("request fail.result=" + JSON.stringify(result));
-		} else {
-			callback(result.body.response);
-		}
-	});
+function doCallback(result, callback) {
+	if (!requestIsSuccess(result)) {
+		alert("request fail.result=" + JSON.stringify(result));
+	} else {
+		callback(result.body.response);
+	}
 }
 
 function requestIsSuccess(result) {
@@ -26,9 +46,21 @@ function requestIsSuccess(result) {
 	return true;
 }
 
+function listCat(callback) {
+	post(listCatUrl, {}, callback);
+}
+
+function selectCommos(catId, callback) {
+	post(selectCommosUrl, {
+		catId
+	}, callback);
+}
+
+
 
 const DataService = {
-	listCat
+	listCat,
+	selectCommos
 };
 
 export default DataService;

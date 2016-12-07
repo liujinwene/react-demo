@@ -8,6 +8,6 @@ export function listCat(callback) {
 	DataService.listCat(callback);
 }
 
-export function selectCommo() {
-
+export function selectCommos(catId, callback) {
+	DataService.selectCommos(catId, callback);
 }
