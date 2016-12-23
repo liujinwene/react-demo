@@ -4,20 +4,20 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 /**
- * biz-demo
+ * react-weui-demo
  **/
 module.exports = {
-  entry: path.resolve(__dirname, 'biz-demo/src/js/index.js'),
+  entry: path.resolve(__dirname, 'react-weui-demo/src/js/index.js'),
 
   output: {
-    path: path.resolve(__dirname, 'biz-demo/deploy'),
+    path: path.resolve(__dirname, 'react-weui-demo/deploy'),
     filename: 'bundle.js' //js文件名加hash
   },
 
   devtool: 'eval-source-map', //方便调试,js代码，加eval源码
 
   devServer: {
-    contentBase: './biz-demo', //本地服务器加载目录
+    contentBase: './react-weui-demo', //本地服务器加载目录
     colors: true, //终端输出结果为彩色
     historyApiFallback: true, //不跳转
     inline: true, //实时刷新
@@ -41,7 +41,7 @@ module.exports = {
   plugins: [
     new webpack.BannerPlugin("Copyright abc inc."), //文件顶部加注释
     new HtmlWebpackPlugin({
-      template: __dirname + '/biz-demo/src/html/index.tmpl.html'
+      template: __dirname + '/react-weui-demo/src/html/index.tmpl.html'
     }),
     new webpack.HotModuleReplacementPlugin() //热加载插件
   ]
