@@ -1,0 +1,42 @@
+@charset 'utf-8';
+
+/*公共*/
+.com_width {
+	width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.left_area {
+	float: left;
+}
+.right_area {
+	float: right;
+}
+
+/*top_bar*/
+.top_bar {
+	height: 31px;
+	background-color: #F7F7F7;
+	line-height: 31px;
+}
+/* .top_bar .left_area {
+	line-height: 31px;
+} */
+.collection {
+	background: url(../images/icon/collection.png) left center no-repeat;
+	padding-left: 29px;
+	font-weight: bold;
+}
+.top_bar a:hover {
+	color: red;
+}
+
+/*logo_bar*/
+.logo_bar {
+	height: 85px;
+	background-color: #1D7AD9;
+}
+.logo {
+	padding-left: 41px;
+	padding-top: 13px;
+}
