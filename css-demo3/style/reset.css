@@ -18,8 +18,10 @@ img {
 li {
 	list-style: none;
 }
-input, select, textarea, {
+input, select, textarea {
 	outline: none;
+	border: none;
+	background: none;
 }
 textarea {
 	resize: none;
@@ -42,4 +44,12 @@ a {
 /*去掉a的下划线*/
 a {
 	blr: expression(this.onFocus=this.blur());
+}
+
+/*左右浮动*/
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
 }
