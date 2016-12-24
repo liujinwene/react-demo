@@ -105,8 +105,12 @@
 	background-color: #1369C0;
 	color: #FFF;
 }
+/*nar_bar shop_class*/
 .shop_class {
 	width: 190px;
+	position: relative;
+}
+.shop_class h3 {
 	line-height: 35px;
 	text-align: center;
 }
@@ -121,6 +125,7 @@
 .shop_class .nav {
 	font-family: 'Microsoft YaHei', '微软雅黑';
 }
+/*nar_bar nav*/
 .nav {
 	line-height: 35px;
 }
@@ -135,4 +140,38 @@
 }
 .nav .active {
 	background-color: #4593FD;
+}
+/*商品弹出列表*/
+.shop_class_show {
+	background-color: #4593FD;
+	position: absolute;
+	left: 0;
+	top: 35px;
+	width: 100%;
+}
+.shop_class_item {
+	padding: 14px 10px;
+	border-bottom: #2487F2 solid 1px;
+	border-top: #5AA1FE solid 1px;
+}
+.shop_class_item dt {
+	height: 22px;
+	background: url(../images/icon/sanjiao.png) right center no-repeat;
+}
+.shop_class_item .b {
+	font-family: 'Microsoft YaHei', '微软雅黑';
+	font-size: 14px;
+	font-weight: bold;
+}
+.shop_class_item a {
+	color: #FFF;
+}
+.shop_class_item .alink {
+	width: 48px;
+	height: 20px;
+	background: url(../images/icon/alink_bg.png) left center no-repeat;
+	display: inline-block;
+	text-align: center;
+	line-height: 20px;
+	text-decoration: underline;
 }
